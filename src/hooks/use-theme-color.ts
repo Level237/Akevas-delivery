@@ -1,10 +1,11 @@
 /**
- * Learn more about light and dark modes:
+ * Learn more about Light and Dark modes:
  * https://docs.expo.dev/guides/color-schemes/
  */
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { Colors } from '@/src/constants/theme';
+import { useColorScheme } from 'react-native';
+
+import { Colors } from '@/constants/theme';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },

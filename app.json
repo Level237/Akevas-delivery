@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AkevasDelivery",
-    "slug": "AkevasDelivery",
+    "name": "akevasdelivery",
+    "slug": "akevasdelivery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
