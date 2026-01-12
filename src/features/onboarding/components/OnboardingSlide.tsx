@@ -14,7 +14,7 @@ export const OnboardingSlide: React.FC<OnboardingSlideProps> = ({ item }) => {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image 
-            source={{ uri: item.image }} 
+            source={item.image} 
             style={styles.image} 
             resizeMode="contain" 
         />
