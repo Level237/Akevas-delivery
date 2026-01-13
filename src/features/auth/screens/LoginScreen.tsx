@@ -1,26 +1,26 @@
 import { Colors } from '@/theme/colors';
-import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { CheckSquare, Eye, EyeOff, Lock, Mail, Square } from 'lucide-react-native';
+import * as WebBrowser from 'expo-web-browser';
+import { CheckSquare, Eye, EyeOff, Lock, Phone, Square } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Dimensions, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
 const { width, height } = Dimensions.get('window');
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = () => {
-    console.log('Login with:', email, password);
+    console.log('Login with:', phoneNumber, password);
     // Proceed to main app
     router.replace('/(tabs)/explore');
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
+    const result = await WebBrowser.openBrowserAsync('https://delivery.akevas.com/delivery/register');
     console.log('Navigate to Register');
   };
 
@@ -32,29 +32,30 @@ export default function LoginScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent} bounces={false}>
         {/* Header Background */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Sign In</Text>
+          <Text style={styles.headerTitle}>Connexion</Text>
         </View>
 
         {/* White Card Overlay */}
         <View style={styles.card}>
-          <Text style={styles.welcomeTitle}>Welcome Back!</Text>
+          <Text style={styles.welcomeTitle}>Bienvenue !</Text>
           <Text style={styles.subtitle}>
             To keep connected with us please login with your personal info
           </Text>
 
           {/* Form */}
           <View style={styles.form}>
-            {/* Email Input */}
+            {/* Phone Input */}
             <View style={styles.inputContainer}>
-              <Mail color={Colors.gray} size={20} style={styles.inputIcon} />
+              <Phone color={Colors.gray} size={20} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder="Email Address"
+                placeholder="Numéro de téléphone"
                 placeholderTextColor={Colors.gray}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
+                value={phoneNumber}
+                onChangeText={setPhoneNumber}
+                keyboardType="phone-pad"
+                textContentType="telephoneNumber"
+                autoComplete="tel"
               />
             </View>
 
@@ -110,28 +111,15 @@ export default function LoginScreen() {
             </View>
 
             {/* Social Login */}
-            <View style={styles.socialRow}>
-              <TouchableOpacity style={styles.socialButton}>
-                <FontAwesome name="google" size={24} color="#DB4437" />
-                <Text style={styles.socialButtonText}>Google</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity style={styles.socialButton}>
-                <FontAwesome name="apple" size={24} color="#000" />
-                <Text style={styles.socialButtonText}>Apple</Text>
-              </TouchableOpacity>
-            </View>
+          
 
-            <TouchableOpacity style={[styles.socialButton, styles.facebookButton]}>
-              <FontAwesome name="facebook" size={24} color="#4267B2" />
-              <Text style={[styles.socialButtonText, styles.facebookText]}>Continue with Facebook</Text>
-            </TouchableOpacity>
+          
 
             {/* Register Link */}
             <View style={styles.registerContainer}>
-              <Text style={styles.registerText}>Don't have an account? </Text>
+              <Text style={styles.registerText}>Vous n'aviez pas de compte? </Text>
               <TouchableOpacity onPress={handleRegister}>
-                <Text style={styles.registerLink}>Register</Text>
+                <Text style={styles.registerLink}>Créer un compte</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -156,7 +144,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   headerTitle: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
   },
