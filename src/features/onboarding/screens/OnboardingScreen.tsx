@@ -34,7 +34,7 @@ export default function OnboardingScreen() {
 
   const completeOnboarding = () => {
     // In a real app, save onboarding status to AsyncStorage here
-    router.replace('/(tabs)/explore');
+    router.replace('/welcome');
   };
 
 
